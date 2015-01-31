@@ -34,7 +34,7 @@ public enum Error {
 }
 
 public enum ParserResult {
-    case Ok(String, Range<String.Index>)
+    case Ok(String?, Range<String.Index>)
     case Err(Error)
 }
 
@@ -116,7 +116,11 @@ public func transform<T>(parseResult: ParserResult?, tokenize: (String, Range<St
     if let parseResult = parseResult {
         switch parseResult {
         case let .Ok(string, range):
-            recognizerResult = .Ok(tokenize(string, range)*)
+            if let string = string {
+                recognizerResult = .Ok(tokenize(string, range)*)
+            } else {
+                recognizerResult = .Ok(nil)
+            }
         case let .Err(error):
             recognizerResult = .Err(error)
         }

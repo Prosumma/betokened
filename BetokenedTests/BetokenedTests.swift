@@ -10,25 +10,12 @@ import UIKit
 import XCTest
 
 enum Token {
-    case Literal(String, Range<String.Index>)
+    case Literal(String)
+    case Op(Character)
 }
 
 class BetokenedTests: XCTestCase {
-
-    func testWatusi() {
-        let gregory = string("gregory") >> { string, range in Token.Literal(string, range) }
-        let tokenizer = whitespace | gregory | end
-        switch tokenizer.tokenize("   gregory  ") {
-        case .Ok(let tokens):
-            for token in tokens {
-                switch token {
-                case let .Literal(string, _):
-                    println(string)
-                }
-            }
-        case .Err(let error):
-            println(error)
-        }
-    }
+    
+    
     
 }
