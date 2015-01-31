@@ -5,6 +5,7 @@
 - It always tokenizes an underlying string.
 - It is designed to be as simple and straightforward as possible.
 - Custom operators are available to simplify syntax.
+- I am using this in an iOS/OSX project I'm working on, so I'll be dogfooding it thoroughly. It will also have targets for each environment.
 
 Betokened is *not* a parser combinator library, although I am adding some simple capabilities to create hierarchies of tokens. It creates a stream of tokens that you are then responsible for turning into syntax. (My Parsimonious parser combinator library, which I never finished, will probably be repurposed to do that.)
 
