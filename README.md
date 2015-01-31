@@ -13,7 +13,7 @@ Betokened is *not* a parser combinator library, although I am adding some simple
 
     // Any type can be used as the token type, but an enum seems to work best.
     enum Token {
-    	case Literal(String)
+        case Literal(String)
     }
 
     // Sets up a Recognizer that matches the string "betokened" and if so, converts it to a Token.Literal.
@@ -35,16 +35,16 @@ A Recognizer is a function that recognizes a portion of a string and converts it
 
     // Match the string "betokened"
     func betokened(stream: StringStream) -> RecognizerResult<T>? {
-    	var result: RecognizerResult<T>?
-	let string = stream.string
-	if let range = string.rangeOfString("betokened", options: nil, range: string.startIndex..<string.endIndex, locale: nil) {
-	  if range.startIndex == string.startIndex {
-	    result = Token.Literal("betokened")
-	    // A recognizer is responsible for advancing the stream index if it recognizes.
-	    stream.index = advance(stream.index, countElements("betokened"))
-	  }
-	}
-	return result
+        var result: RecognizerResult<T>?
+        let string = stream.string
+        if let range = string.rangeOfString("betokened", options: nil, range: string.startIndex..<string.endIndex, locale: nil) {
+            if range.startIndex == string.startIndex {
+                result = Token.Literal("betokened")
+                // A recognizer is responsible for advancing the stream index if it recognizes.
+                stream.index = advance(stream.index, countElements("betokened"))
+            }
+        }
+        return result
     }
 
 Most of the time it isn't necessary to write your own Recognizers. The problem with them is that they combine recognition with conversion of what is recognized into a token. It would be better to separate those, and so we can, using Parsers.
