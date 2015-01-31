@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		F36933D51A7D9E00000316D7 /* Betokened.h in Headers */ = {isa = PBXBuildFile; fileRef = F36933D41A7D9E00000316D7 /* Betokened.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F36933E91A7D9E1C000316D7 /* Betokened.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1DD591A7CCBD800FC7A2E /* Betokened.swift */; };
+		F36933EB1A7DA242000316D7 /* Prosumma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F36933EA1A7DA242000316D7 /* Prosumma.framework */; };
+		F36933ED1A7DA24F000316D7 /* Prosumma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F36933EC1A7DA24F000316D7 /* Prosumma.framework */; };
 		F3B1DD431A7CCB9C00FC7A2E /* Betokened.h in Headers */ = {isa = PBXBuildFile; fileRef = F3B1DD421A7CCB9C00FC7A2E /* Betokened.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F3B1DD491A7CCB9C00FC7A2E /* Betokened.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B1DD3D1A7CCB9C00FC7A2E /* Betokened.framework */; };
 		F3B1DD501A7CCB9C00FC7A2E /* BetokenedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1DD4F1A7CCB9C00FC7A2E /* BetokenedTests.swift */; };
@@ -30,6 +32,8 @@
 		F36933D01A7D9E00000316D7 /* Betokened.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Betokened.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36933D31A7D9E00000316D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F36933D41A7D9E00000316D7 /* Betokened.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Betokened.h; sourceTree = "<group>"; };
+		F36933EA1A7DA242000316D7 /* Prosumma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prosumma.framework; path = "../Prosumma/build/Debug-iphoneos/Prosumma.framework"; sourceTree = "<group>"; };
+		F36933EC1A7DA24F000316D7 /* Prosumma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prosumma.framework; path = ../Prosumma/build/Debug/Prosumma.framework; sourceTree = "<group>"; };
 		F3B1DD3D1A7CCB9C00FC7A2E /* Betokened.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Betokened.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B1DD411A7CCB9C00FC7A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3B1DD421A7CCB9C00FC7A2E /* Betokened.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Betokened.h; sourceTree = "<group>"; };
@@ -44,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F36933ED1A7DA24F000316D7 /* Prosumma.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F36933EB1A7DA242000316D7 /* Prosumma.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +91,8 @@
 		F3B1DD331A7CCB9C00FC7A2E = {
 			isa = PBXGroup;
 			children = (
+				F36933EC1A7DA24F000316D7 /* Prosumma.framework */,
+				F36933EA1A7DA242000316D7 /* Prosumma.framework */,
 				F3B1DD3F1A7CCB9C00FC7A2E /* Betokened */,
 				F3B1DD4C1A7CCB9C00FC7A2E /* BetokenedTests */,
 				F36933D11A7D9E00000316D7 /* Betokened */,

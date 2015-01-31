@@ -7,26 +7,7 @@
 //
 
 import Foundation
-import Swift
-
-public final class Cell<T> {
-    public let contents: T
-    public init(contents: T) {
-        self.contents = contents
-    }
-}
-
-prefix operator * {}
-
-public prefix func *<T>(cell: Cell<T>) -> T {
-    return cell.contents
-}
-
-postfix operator * {}
-
-public postfix func *<T>(contents: T) -> Cell<T> {
-    return Cell(contents: contents)
-}
+import Prosumma
 
 public enum Error {
     case UnterminatedDelimiter(String.Index)
