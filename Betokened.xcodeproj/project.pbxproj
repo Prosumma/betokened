@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F36933D51A7D9E00000316D7 /* Betokened.h in Headers */ = {isa = PBXBuildFile; fileRef = F36933D41A7D9E00000316D7 /* Betokened.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F36933E91A7D9E1C000316D7 /* Betokened.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1DD591A7CCBD800FC7A2E /* Betokened.swift */; };
 		F3B1DD431A7CCB9C00FC7A2E /* Betokened.h in Headers */ = {isa = PBXBuildFile; fileRef = F3B1DD421A7CCB9C00FC7A2E /* Betokened.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F3B1DD491A7CCB9C00FC7A2E /* Betokened.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B1DD3D1A7CCB9C00FC7A2E /* Betokened.framework */; };
 		F3B1DD501A7CCB9C00FC7A2E /* BetokenedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1DD4F1A7CCB9C00FC7A2E /* BetokenedTests.swift */; };
@@ -25,6 +27,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F36933D01A7D9E00000316D7 /* Betokened.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Betokened.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F36933D31A7D9E00000316D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F36933D41A7D9E00000316D7 /* Betokened.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Betokened.h; sourceTree = "<group>"; };
 		F3B1DD3D1A7CCB9C00FC7A2E /* Betokened.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Betokened.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B1DD411A7CCB9C00FC7A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3B1DD421A7CCB9C00FC7A2E /* Betokened.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Betokened.h; sourceTree = "<group>"; };
@@ -35,6 +40,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F36933CC1A7D9E00000316D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3B1DD391A7CCB9C00FC7A2E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -53,11 +65,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F36933D11A7D9E00000316D7 /* Betokened */ = {
+			isa = PBXGroup;
+			children = (
+				F36933D41A7D9E00000316D7 /* Betokened.h */,
+				F36933D21A7D9E00000316D7 /* Supporting Files */,
+			);
+			path = Betokened;
+			sourceTree = "<group>";
+		};
+		F36933D21A7D9E00000316D7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F36933D31A7D9E00000316D7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		F3B1DD331A7CCB9C00FC7A2E = {
 			isa = PBXGroup;
 			children = (
 				F3B1DD3F1A7CCB9C00FC7A2E /* Betokened */,
 				F3B1DD4C1A7CCB9C00FC7A2E /* BetokenedTests */,
+				F36933D11A7D9E00000316D7 /* Betokened */,
 				F3B1DD3E1A7CCB9C00FC7A2E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +97,7 @@
 			children = (
 				F3B1DD3D1A7CCB9C00FC7A2E /* Betokened.framework */,
 				F3B1DD481A7CCB9C00FC7A2E /* BetokenedTests.xctest */,
+				F36933D01A7D9E00000316D7 /* Betokened.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,6 +140,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		F36933CD1A7D9E00000316D7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F36933D51A7D9E00000316D7 /* Betokened.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3B1DD3A1A7CCB9C00FC7A2E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -120,9 +159,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		F3B1DD3C1A7CCB9C00FC7A2E /* Betokened */ = {
+		F36933CF1A7D9E00000316D7 /* Betokened OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F3B1DD531A7CCB9C00FC7A2E /* Build configuration list for PBXNativeTarget "Betokened" */;
+			buildConfigurationList = F36933E31A7D9E01000316D7 /* Build configuration list for PBXNativeTarget "Betokened OSX" */;
+			buildPhases = (
+				F36933CB1A7D9E00000316D7 /* Sources */,
+				F36933CC1A7D9E00000316D7 /* Frameworks */,
+				F36933CD1A7D9E00000316D7 /* Headers */,
+				F36933CE1A7D9E00000316D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Betokened OSX";
+			productName = Betokened;
+			productReference = F36933D01A7D9E00000316D7 /* Betokened.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F3B1DD3C1A7CCB9C00FC7A2E /* Betokened iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3B1DD531A7CCB9C00FC7A2E /* Build configuration list for PBXNativeTarget "Betokened iOS" */;
 			buildPhases = (
 				F3B1DD381A7CCB9C00FC7A2E /* Sources */,
 				F3B1DD391A7CCB9C00FC7A2E /* Frameworks */,
@@ -133,7 +190,7 @@
 			);
 			dependencies = (
 			);
-			name = Betokened;
+			name = "Betokened iOS";
 			productName = Betokened;
 			productReference = F3B1DD3D1A7CCB9C00FC7A2E /* Betokened.framework */;
 			productType = "com.apple.product-type.framework";
@@ -165,6 +222,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Prosumma LLC";
 				TargetAttributes = {
+					F36933CF1A7D9E00000316D7 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 					F3B1DD3C1A7CCB9C00FC7A2E = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -185,13 +245,21 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F3B1DD3C1A7CCB9C00FC7A2E /* Betokened */,
+				F3B1DD3C1A7CCB9C00FC7A2E /* Betokened iOS */,
 				F3B1DD471A7CCB9C00FC7A2E /* BetokenedTests */,
+				F36933CF1A7D9E00000316D7 /* Betokened OSX */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F36933CE1A7D9E00000316D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3B1DD3B1A7CCB9C00FC7A2E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -209,6 +277,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F36933CB1A7D9E00000316D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F36933E91A7D9E1C000316D7 /* Betokened.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3B1DD381A7CCB9C00FC7A2E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,12 +307,55 @@
 /* Begin PBXTargetDependency section */
 		F3B1DD4B1A7CCB9C00FC7A2E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F3B1DD3C1A7CCB9C00FC7A2E /* Betokened */;
+			target = F3B1DD3C1A7CCB9C00FC7A2E /* Betokened iOS */;
 			targetProxy = F3B1DD4A1A7CCB9C00FC7A2E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		F36933E41A7D9E01000316D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Betokened/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = Betokened;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F36933E51A7D9E01000316D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Betokened/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = Betokened;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		F3B1DD511A7CCB9C00FC7A2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -333,7 +452,7 @@
 				INFOPLIST_FILE = Betokened/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Betokened;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -350,7 +469,7 @@
 				INFOPLIST_FILE = Betokened/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Betokened;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -388,6 +507,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F36933E31A7D9E01000316D7 /* Build configuration list for PBXNativeTarget "Betokened OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F36933E41A7D9E01000316D7 /* Debug */,
+				F36933E51A7D9E01000316D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F3B1DD371A7CCB9C00FC7A2E /* Build configuration list for PBXProject "Betokened" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -397,7 +524,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F3B1DD531A7CCB9C00FC7A2E /* Build configuration list for PBXNativeTarget "Betokened" */ = {
+		F3B1DD531A7CCB9C00FC7A2E /* Build configuration list for PBXNativeTarget "Betokened iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F3B1DD541A7CCB9C00FC7A2E /* Debug */,
