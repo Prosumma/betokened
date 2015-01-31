@@ -73,6 +73,9 @@ public class StringStream: StringLiteralConvertible {
         let d = distance(range.startIndex, range.endIndex)
         return index..<advance(index, d)
     }
+    public func convert(distance: String.Index.Distance) -> Range<String.Index> {
+        return index..<advance(index, distance)
+    }
 }
 
 public class Tokenizer<T> {
@@ -168,8 +171,9 @@ public func string(match: String)(stream: StringStream) -> ParserResult? {
         let string = stream.string
         if let range = string.rangeOfString(match, options: nil, range: string.startIndex..<string.endIndex, locale: nil) {
             if range.startIndex == string.startIndex {
-                parserResult = .Ok(match, stream.convert(range))
-                stream.index = advance(stream.convert(range).endIndex, 1)
+                let streamRange = stream.convert(range)
+                parserResult = .Ok(match, streamRange)
+                stream.index = advance(streamRange.endIndex, 1)
             }
         }
     }
