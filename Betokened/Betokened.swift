@@ -168,29 +168,6 @@ public func | <T>(tokenizer: Tokenizer<T>, recognizer: StringStream -> Recognize
     return combine(tokenizer, recognizer)
 }
 
-public func lift <T1, T2>(tokenizer: Tokenizer<T1>, transform: [T1] -> T2)(stream: StringStream) -> RecognizerResult<T2>? {
-    switch tokenizer.tokenize(stream) {
-    case .Ok(let tokens):
-        return .Ok(transform(tokens)*)
-    case .Err(let error):
-        return .Err(error)
-    }
-}
-
-public func lift<T1, T2>(recognizer: StringStream -> RecognizerResult<T1>?, transform: [T1] -> T2)(stream: StringStream) -> RecognizerResult<T2>? {
-    return lift(Tokenizer<T1>(recognizer), transform)
-}
-
-infix operator *>> { associativity left precedence 100 }
-
-public func *>> <T1, T2>(tokenizer: Tokenizer<T1>, transform: [T1] -> T2)(stream: StringStream) -> RecognizerResult<T2>? {
-    return lift(tokenizer, transform)
-}
-
-public func *>> <T1, T2>(recognizer: StringStream -> RecognizerResult<T1>?, transform: [T1] -> T2)(stream: StringStream) -> RecognizerResult<T2>? {
-    return lift(Tokenizer<T1>(recognizer), transform)
-}
-
 public func whitespace(stream: StringStream) -> ParserResult? {
     var parserResult: ParserResult?
     let whitespaceAndNewLineCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()
