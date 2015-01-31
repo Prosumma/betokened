@@ -180,7 +180,7 @@ public func whitespace(stream: StringStream) -> ParserResult? {
         let string = stream.string
         if let range = string.rangeOfCharacterFromSet(whitespaceAndNewLineCharacterSet, options: nil, range: string.startIndex..<string.endIndex) {
             if range.startIndex == string.startIndex {
-                parserResult = .Ok("", startIndex..<stream.index)
+                parserResult = .Ok(nil, startIndex..<stream.index)
                 stream.index = advance(stream.index, 1)
             } else {
                 break
