@@ -17,7 +17,7 @@ class BetokenedTests: XCTestCase {
 
     func testWatusi() {
         let gregory = string("gregory") >> { string, range in Token.Literal(string, range) }
-        let tokenizer = Tokenizer<Token>([whitespace, gregory, end])
+        let tokenizer = whitespace | gregory | end
         switch tokenizer.tokenize("   gregory  ") {
         case .Ok(let tokens):
             for token in tokens {
