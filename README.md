@@ -7,7 +7,7 @@
 - Custom operators are available to simplify syntax.
 - I am using this in an iOS/OSX project I'm working on, so I'll be dogfooding it thoroughly. It will also have targets for each environment.
 
-Betokened is *not* a parser combinator library, although I am adding some simple capabilities to create hierarchies of tokens. It creates a stream of tokens that you are then responsible for turning into syntax. (My Parsimonious parser combinator library, which I never finished, will probably be repurposed to do that.)
+Betokened is *not* a parser combinator library. It creates a flat array of tokens that you are then responsible for turning into syntax. It does not understand hierarchy at all and never will. (My Parsimonious parser combinator library, which I never finished, will probably be repurposed to do that.)
 
 ## Example
 
