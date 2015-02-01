@@ -24,3 +24,30 @@ public func string(match: String)(stream: StringStream) -> ParserResult? {
     return parserResult
 }
 
+public func oneCharOf(string: String)(stream: StringStream) -> ParserResult? {
+    var parserResult: ParserResult?
+    if let c = first(stream.string) {
+        for ch in string {
+            if c == ch {
+                parserResult = .Ok(String(c), stream.index..<advance(stream.index, 1))
+                stream.index = advance(stream.index, 1)
+                break
+            }
+        }
+    }
+    return parserResult
+}
+
+public func oneStringOf(strings: [String])(stream: StringStream) -> ParserResult? {
+    var parserResult: ParserResult?
+    for s in strings {
+        parserResult = string(s)(stream: stream)
+        if parserResult != nil { break }
+    }
+    return parserResult
+}
+
+public func oneStringOf(strings: String...)(stream: StringStream) -> ParserResult? {
+    return oneStringOf(strings)(stream: stream)
+}
+
