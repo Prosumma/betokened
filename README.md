@@ -67,3 +67,6 @@ Many built-in Parsers and Recognizers uses Swift's awesome partial application c
 
 This is because most Parsers and Recognizers must take arguments, but they also need to conform to the type signature of their respective type. Partial application makes this possible.
 
+## Dependencies
+
+This library depends on my [Prosumma](https://github.com/Prosumma/Prosumma) framework, which is a grab bag of stuff I use in various projects. (Well, that's the intent. As of this writing it's rather empty.)
