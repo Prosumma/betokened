@@ -11,12 +11,19 @@ import Prosumma
 
 public func whitespace<T>(stream: StringStream) -> RecognizerResult<T>? {
     var recognizerResult: RecognizerResult<T>?
-    if let parserResult: ParserResult = whitespace(stream) {
-        switch parserResult {
-        case .Ok(_, _):
-            recognizerResult = .Ok(nil)
-        case .Err(let error):
-            recognizerResult = .Err(error)
+    let whitespaceAndNewLineCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()
+    let startIndex = stream.index
+    while !stream.atEnd {
+        let string = stream.string
+        if let range = string.rangeOfCharacterFromSet(whitespaceAndNewLineCharacterSet, options: nil, range: string.startIndex..<string.endIndex) {
+            if range.startIndex == string.startIndex {
+                recognizerResult = .Ok(nil)
+                stream.index = advance(stream.index, 1)
+            } else {
+                break
+            }
+        } else {
+            break
         }
     }
     return recognizerResult
