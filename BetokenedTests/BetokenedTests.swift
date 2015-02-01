@@ -11,26 +11,34 @@ import XCTest
 import Swift
 
 enum Token: DebugPrintable, Equatable {
-    case Literal(String)
-    case Op(Character)
+    case Literal(String, Range<String.Index>)
+    case Op(Character, Range<String.Index>)
     var debugDescription: String {
         switch self {
         case .Literal(let s): return "Literal \(s)"
         case .Op(let c): return "Operator \(c)"
         }
     }
+    
+    static func toLiteral(string: String, range: Range<String.Index>) -> Token {
+        return .Literal(string, range)
+    }
+    
+    static func toOp(string: String, range: Range<String.Index>) -> Token {
+        return .Op(Character(string), range)
+    }
 }
 
 func == (lhs: Token, rhs: Token) -> Bool {
     switch lhs {
-    case .Literal(let ls):
+    case .Literal(let ls, _):
         switch rhs {
-        case .Literal(let rs): return ls == rs
+        case .Literal(let rs, _): return ls == rs
         default: false
         }
-    case .Op(let lop):
+    case .Op(let lop, _):
         switch rhs {
-        case .Op(let rop): return lop == rop
+        case .Op(let rop, _): return lop == rop
         default: false
         }
     }
@@ -41,75 +49,200 @@ let TokenMatchFailed = "Token match failed."
 
 class BetokenedTests: XCTestCase {
     
-    func testDelimitCurlyBracesWithoutEscape() {
-        let braces = delimit("{", "}", escape: nil) >> { string, _ in Token.Literal(string) }
-        let parens = oneCharOf("()") >> { string, _ in Token.Op(Character(string)) }
-        let tokenizer = whitespace | parens | braces | end
-        switch tokenizer.tokenize("(   {betokened}    )") {
+    func testNonFinalAsymmetricDelimiterWithoutEscape() {
+        let test = "{betokened}+"
+        let braces = delimit("{", "}") >> Token.toLiteral
+        let op = string("+") >> Token.toOp
+        let tokenizer = whitespace | braces | op | end
+        switch tokenizer.tokenize(StringStream(test)) {
         case .Ok(let tokens):
-            XCTAssertEqual(tokens[1], Token.Literal("betokened"), TokenMatchFailed)
-            println(tokens)
-        case .Err(let error): XCTFail(TokenMatchFailed)
-        }
-    }
-    
-    /*
-    func testDelimitCurlyBracesWithEscape() {
-        let braces = delimit("{", "}", escape: "^") >> { string, _ in Token.Literal(string) }
-        let parens = oneCharOf("()") >> { string, _ in Token.Op(Character(string)) }
-        let tokenizer = whitespace | parens | braces | end
-        switch tokenizer.tokenize("(   {be^^toke^}ned}    )") {
-        case .Ok(let tokens):
-            XCTAssertEqual(tokens[1], Token.Literal("be^^toke}ned"), TokenMatchFailed)
-            println(tokens)
-        case .Err(let error): XCTFail(TokenMatchFailed)
-        }
-    }
-    */
-    
-    func testQuotesWithoutEscape() {
-        let quotes = quote("'", escape: nil) >> { string, _ in Token.Literal(string) }
-        let tokenizer = whitespace | quotes | end
-        switch tokenizer.tokenize(" 'betokened'") {
-        case .Ok(let tokens):
-            XCTAssertEqual(tokens[0], Token.Literal("betokened"), TokenMatchFailed)
-            println(tokens)
-        case .Err(let error): XCTFail(TokenMatchFailed)
-        }
-    }
-    
-    func testString() {
-        let s = string("betokened") >> { string, _ in Token.Literal(string) }
-        let op = oneCharOf("(+)") >> { string, _ in Token.Op(Character(string)) }
-        let tokenizer = whitespace | op | s
-        switch tokenizer.tokenize("( betokened)") {
-        case .Ok(let tokens):
-            XCTAssertEqual(tokens[1], Token.Literal("betokened"), TokenMatchFailed)
-            println(tokens)
-        case .Err(let error): XCTFail(TokenMatchFailed)
-        }
-    }
-    
-    func testOneCharOf() {
-        let op = oneCharOf("(+)") >> { string, _ in Token.Op(Character(string)) }
-        let tokenizer = whitespace | op
-        switch tokenizer.tokenize("  (") {
-        case .Ok(let tokens):
-            XCTAssertEqual(tokens.first!, Token.Op("("), TokenMatchFailed)
-            println(tokens)
-        case .Err(let error): XCTFail(TokenMatchFailed)
+            XCTAssertEqual(tokens.count, 2, TokenMatchFailed)
+            let betokened = "betokened"
+            switch tokens[0] {
+            case let .Literal(string, range):
+                XCTAssertEqual(string, betokened, TokenMatchFailed)
+                XCTAssertEqual("{betokened}", test.substringWithRange(range), TokenMatchFailed)
+                switch tokens[1] {
+                case let .Op(c, range):
+                    XCTAssertEqual(c, Character("+"), TokenMatchFailed)
+                    XCTAssertEqual("+", test.substringWithRange(range), TokenMatchFailed)
+                default:
+                    XCTFail(TokenMatchFailed)
+                }
+            default:
+                XCTFail(TokenMatchFailed)
+            }
+        case .Err(let error):
+            XCTFail("")
         }
     }
 
-    func testRegex() {
-        let r = regex("[^\\s+()]+") >> { string, _ in Token.Literal(string) }
-        let op = oneCharOf("(+)") >> { string, _ in Token.Op(Character(string)) }
-        let tokenizer = whitespace | op | r | end
-        switch tokenizer.tokenize("( betokened)   ") {
+    func testFinalAsymmetricDelimiterWithoutEscape() {
+        let test = "+{betokened}"
+        let braces = delimit("{", "}") >> Token.toLiteral
+        let op = string("+") >> Token.toOp
+        let tokenizer = whitespace | braces | op | end
+        switch tokenizer.tokenize(StringStream(test)) {
         case .Ok(let tokens):
-            XCTAssertEqual(tokens[1], Token.Literal("betokened"), TokenMatchFailed)
-            println(tokens)
-        case .Err(let error): XCTFail(TokenMatchFailed)
+            XCTAssertEqual(tokens.count, 2, TokenMatchFailed)
+            let betokened = "betokened"
+            switch tokens[1] {
+            case let .Literal(string, range):
+                XCTAssertEqual(string, betokened, TokenMatchFailed)
+                XCTAssertEqual("{betokened}", test.substringWithRange(range), TokenMatchFailed)
+            default:
+                XCTFail(TokenMatchFailed)
+            }
+        case .Err(let error):
+            XCTFail("")
         }
     }
+    
+    func testNonFinalAsymmetricDelimiterWithEscape() {
+        let test = "{betoke^}ned}+"
+        let braces = delimit("{", "}", escape: "^") >> Token.toLiteral
+        let op = string("+") >> Token.toOp
+        let tokenizer = whitespace | braces | op | end
+        switch tokenizer.tokenize(StringStream(test)) {
+        case .Ok(let tokens):
+            XCTAssertEqual(tokens.count, 2, TokenMatchFailed)
+            let betokened = "betoke}ned"
+            switch tokens[0] {
+            case let .Literal(string, range):
+                XCTAssertEqual(string, betokened, TokenMatchFailed)
+                XCTAssertEqual("{betoke^}ned}", test.substringWithRange(range), TokenMatchFailed)
+                switch tokens[1] {
+                case let .Op(c, range):
+                    XCTAssertEqual(c, Character("+"), TokenMatchFailed)
+                    XCTAssertEqual("+", test.substringWithRange(range), TokenMatchFailed)
+                default:
+                    XCTFail(TokenMatchFailed)
+                }
+            default:
+                XCTFail(TokenMatchFailed)
+            }
+        case .Err(let error):
+            XCTFail("")
+        }
+    }
+    
+    func testFinalAsymmetricDelimiterWithEscape() {
+        let test = "+{betoke^}ned}"
+        let braces = delimit("{", "}", escape: "^") >> Token.toLiteral
+        let op = string("+") >> Token.toOp
+        let tokenizer = whitespace | braces | op | end
+        switch tokenizer.tokenize(StringStream(test)) {
+        case .Ok(let tokens):
+            XCTAssertEqual(tokens.count, 2, TokenMatchFailed)
+            let betokened = "betoke}ned"
+            switch tokens[1] {
+            case let .Literal(string, range):
+                XCTAssertEqual(string, betokened, TokenMatchFailed)
+                XCTAssertEqual("{betoke^}ned}", test.substringWithRange(range), TokenMatchFailed)
+            default:
+                XCTFail(TokenMatchFailed)
+            }
+        case .Err(let error):
+            XCTFail("")
+        }
+    }
+    
+    func testNonFinalSymmetricDelimiterWithoutEscape() {
+        let test = "'betokened'+"
+        let quotes = quote("'") >> Token.toLiteral
+        let op = string("+") >> Token.toOp
+        let tokenizer = whitespace | quotes | op | end
+        switch tokenizer.tokenize(StringStream(test)) {
+        case .Ok(let tokens):
+            XCTAssertEqual(tokens.count, 2, TokenMatchFailed)
+            let betokened = "betokened"
+            switch tokens[0] {
+            case let .Literal(string, range):
+                XCTAssertEqual(string, betokened, TokenMatchFailed)
+                XCTAssertEqual("'betokened'", test.substringWithRange(range), TokenMatchFailed)
+                switch tokens[1] {
+                case let .Op(c, range):
+                    XCTAssertEqual(c, Character("+"), TokenMatchFailed)
+                    XCTAssertEqual("+", test.substringWithRange(range), TokenMatchFailed)
+                default:
+                    XCTFail(TokenMatchFailed)
+                }
+            default:
+                XCTFail(TokenMatchFailed)
+            }
+        case .Err(let error):
+            XCTFail("")
+        }
+    }
+
+    func testFinalSymmetricDelimiterWithoutEscape() {
+        let test = "+'betokened'"
+        let quotes = quote("'") >> Token.toLiteral
+        let op = string("+") >> Token.toOp
+        let tokenizer = whitespace | quotes | op | end
+        switch tokenizer.tokenize(StringStream(test)) {
+        case .Ok(let tokens):
+            XCTAssertEqual(tokens.count, 2, TokenMatchFailed)
+            let betokened = "betokened"
+            switch tokens[1] {
+            case let .Literal(string, range):
+                XCTAssertEqual(string, betokened, TokenMatchFailed)
+                XCTAssertEqual("'betokened'", test.substringWithRange(range), TokenMatchFailed)
+            default:
+                XCTFail(TokenMatchFailed)
+            }
+        case .Err(let error):
+            XCTFail("")
+        }
+    }
+
+    func testNonFinalSymmetricDelimiterWithAsymmetricEscape() {
+        let test = "'betoke^'ned'+"
+        let quotes = quote("'", escape: "^") >> Token.toLiteral
+        let op = string("+") >> Token.toOp
+        let tokenizer = whitespace | quotes | op | end
+        switch tokenizer.tokenize(StringStream(test)) {
+        case .Ok(let tokens):
+            XCTAssertEqual(tokens.count, 2, TokenMatchFailed)
+            let betokened = "betoke'ned"
+            switch tokens[0] {
+            case let .Literal(string, range):
+                XCTAssertEqual(string, betokened, TokenMatchFailed)
+                XCTAssertEqual("'betoke^'ned'", test.substringWithRange(range), TokenMatchFailed)
+                switch tokens[1] {
+                case let .Op(c, range):
+                    XCTAssertEqual(c, Character("+"), TokenMatchFailed)
+                    XCTAssertEqual("+", test.substringWithRange(range), TokenMatchFailed)
+                default:
+                    XCTFail(TokenMatchFailed)
+                }
+            default:
+                XCTFail(TokenMatchFailed)
+            }
+        case .Err(let error):
+            XCTFail("")
+        }
+    }
+
+    func testFinalSymmetricDelimiterWithAsymmetricEscape() {
+        let test = "+'betoke^'ned'"
+        let quotes = quote("'", escape: "^") >> Token.toLiteral
+        let op = string("+") >> Token.toOp
+        let tokenizer = whitespace | quotes | op | end
+        switch tokenizer.tokenize(StringStream(test)) {
+        case .Ok(let tokens):
+            XCTAssertEqual(tokens.count, 2, TokenMatchFailed)
+            let betokened = "betoke'ned"
+            switch tokens[1] {
+            case let .Literal(string, range):
+                XCTAssertEqual(string, betokened, TokenMatchFailed)
+                XCTAssertEqual("'betoke^'ned'", test.substringWithRange(range), TokenMatchFailed)
+            default:
+                XCTFail(TokenMatchFailed)
+            }
+        case .Err(let error):
+            XCTFail("")
+        }
+    }
+    
 }

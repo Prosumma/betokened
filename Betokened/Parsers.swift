@@ -86,8 +86,15 @@ public func delimit(start: Character, end: Character, escape: Character? = nil)(
                 while true {
                     index = advance(index, 1)
                     if index == string.endIndex {
-                        parserResult = .Err(Error.UnterminatedDelimiter(stream.index))
-                        break
+                        if escaping && end == escape {
+                            let streamRange = stream.convert(startIndex..<index)
+                            parserResult = .Ok(parsed, streamRange)
+                            stream.index = streamRange.endIndex
+                            break
+                        } else {
+                            parserResult = .Err(Error.UnterminatedDelimiter(stream.index))
+                            break
+                        }
                     }
                     var c = string[index]
                     if escaping {
@@ -106,9 +113,9 @@ public func delimit(start: Character, end: Character, escape: Character? = nil)(
                     } else if c == escape {
                         escaping = true
                     } else if c == end {
-                        let streamRange = stream.convert(startIndex..<index)
+                        let streamRange = stream.convert(startIndex...index)
                         parserResult = .Ok(parsed, streamRange)
-                        stream.index = advance(streamRange.endIndex, 1)
+                        stream.index = streamRange.endIndex
                         break
                     } else {
                         parsed.append(c)
@@ -121,5 +128,5 @@ public func delimit(start: Character, end: Character, escape: Character? = nil)(
 }
 
 public func quote(mark: Character, escape: Character? = nil)(stream: StringStream) -> ParserResult? {
-    return delimit(mark, mark, escape: mark)(stream: stream)
+    return delimit(mark, mark, escape: escape)(stream: stream)
 }
