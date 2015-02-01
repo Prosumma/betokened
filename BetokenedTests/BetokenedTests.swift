@@ -16,6 +16,4 @@ enum Token {
 
 class BetokenedTests: XCTestCase {
     
-    
-    
 }
