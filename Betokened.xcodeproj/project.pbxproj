@@ -8,14 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		F36933D51A7D9E00000316D7 /* Betokened.h in Headers */ = {isa = PBXBuildFile; fileRef = F36933D41A7D9E00000316D7 /* Betokened.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F36933E91A7D9E1C000316D7 /* Betokened.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1DD591A7CCBD800FC7A2E /* Betokened.swift */; };
 		F36933EB1A7DA242000316D7 /* Prosumma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F36933EA1A7DA242000316D7 /* Prosumma.framework */; };
 		F36933ED1A7DA24F000316D7 /* Prosumma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F36933EC1A7DA24F000316D7 /* Prosumma.framework */; };
+		F36933EF1A7DA875000316D7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933EE1A7DA875000316D7 /* Result.swift */; };
+		F36933F01A7DA875000316D7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933EE1A7DA875000316D7 /* Result.swift */; };
+		F36933F11A7DA875000316D7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933EE1A7DA875000316D7 /* Result.swift */; };
+		F36933F31A7DA8B3000316D7 /* StringStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933F21A7DA8B3000316D7 /* StringStream.swift */; };
+		F36933F41A7DA8B3000316D7 /* StringStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933F21A7DA8B3000316D7 /* StringStream.swift */; };
+		F36933F51A7DA8B3000316D7 /* StringStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933F21A7DA8B3000316D7 /* StringStream.swift */; };
+		F36933F71A7DA8D1000316D7 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933F61A7DA8D1000316D7 /* Tokenizer.swift */; };
+		F36933F81A7DA8D1000316D7 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933F61A7DA8D1000316D7 /* Tokenizer.swift */; };
+		F36933F91A7DA8D1000316D7 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933F61A7DA8D1000316D7 /* Tokenizer.swift */; };
+		F36933FB1A7DA9D4000316D7 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933FA1A7DA9D4000316D7 /* Functional.swift */; };
+		F36933FC1A7DA9D4000316D7 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933FA1A7DA9D4000316D7 /* Functional.swift */; };
+		F36933FD1A7DA9D4000316D7 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933FA1A7DA9D4000316D7 /* Functional.swift */; };
+		F36933FF1A7DAA0A000316D7 /* Parsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933FE1A7DAA0A000316D7 /* Parsers.swift */; };
+		F36934001A7DAA0A000316D7 /* Parsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933FE1A7DAA0A000316D7 /* Parsers.swift */; };
+		F36934011A7DAA0A000316D7 /* Parsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36933FE1A7DAA0A000316D7 /* Parsers.swift */; };
+		F36934031A7DAA3E000316D7 /* Recognizers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36934021A7DAA3E000316D7 /* Recognizers.swift */; };
+		F36934041A7DAA3E000316D7 /* Recognizers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36934021A7DAA3E000316D7 /* Recognizers.swift */; };
+		F36934051A7DAA3E000316D7 /* Recognizers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36934021A7DAA3E000316D7 /* Recognizers.swift */; };
 		F3B1DD431A7CCB9C00FC7A2E /* Betokened.h in Headers */ = {isa = PBXBuildFile; fileRef = F3B1DD421A7CCB9C00FC7A2E /* Betokened.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F3B1DD491A7CCB9C00FC7A2E /* Betokened.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B1DD3D1A7CCB9C00FC7A2E /* Betokened.framework */; };
 		F3B1DD501A7CCB9C00FC7A2E /* BetokenedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1DD4F1A7CCB9C00FC7A2E /* BetokenedTests.swift */; };
-		F3B1DD5A1A7CCBD800FC7A2E /* Betokened.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1DD591A7CCBD800FC7A2E /* Betokened.swift */; };
-		F3B1DD5B1A7D3B6300FC7A2E /* Betokened.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1DD591A7CCBD800FC7A2E /* Betokened.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,13 +49,18 @@
 		F36933D41A7D9E00000316D7 /* Betokened.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Betokened.h; sourceTree = "<group>"; };
 		F36933EA1A7DA242000316D7 /* Prosumma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prosumma.framework; path = "../Prosumma/build/Debug-iphoneos/Prosumma.framework"; sourceTree = "<group>"; };
 		F36933EC1A7DA24F000316D7 /* Prosumma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prosumma.framework; path = ../Prosumma/build/Debug/Prosumma.framework; sourceTree = "<group>"; };
+		F36933EE1A7DA875000316D7 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		F36933F21A7DA8B3000316D7 /* StringStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringStream.swift; sourceTree = "<group>"; };
+		F36933F61A7DA8D1000316D7 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		F36933FA1A7DA9D4000316D7 /* Functional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functional.swift; sourceTree = "<group>"; };
+		F36933FE1A7DAA0A000316D7 /* Parsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parsers.swift; sourceTree = "<group>"; };
+		F36934021A7DAA3E000316D7 /* Recognizers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recognizers.swift; sourceTree = "<group>"; };
 		F3B1DD3D1A7CCB9C00FC7A2E /* Betokened.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Betokened.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B1DD411A7CCB9C00FC7A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3B1DD421A7CCB9C00FC7A2E /* Betokened.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Betokened.h; sourceTree = "<group>"; };
 		F3B1DD481A7CCB9C00FC7A2E /* BetokenedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetokenedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B1DD4E1A7CCB9C00FC7A2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3B1DD4F1A7CCB9C00FC7A2E /* BetokenedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetokenedTests.swift; sourceTree = "<group>"; };
-		F3B1DD591A7CCBD800FC7A2E /* Betokened.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Betokened.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +134,12 @@
 			isa = PBXGroup;
 			children = (
 				F3B1DD421A7CCB9C00FC7A2E /* Betokened.h */,
-				F3B1DD591A7CCBD800FC7A2E /* Betokened.swift */,
+				F36933FA1A7DA9D4000316D7 /* Functional.swift */,
+				F36933FE1A7DAA0A000316D7 /* Parsers.swift */,
+				F36934021A7DAA3E000316D7 /* Recognizers.swift */,
+				F36933EE1A7DA875000316D7 /* Result.swift */,
+				F36933F21A7DA8B3000316D7 /* StringStream.swift */,
+				F36933F61A7DA8D1000316D7 /* Tokenizer.swift */,
 				F3B1DD401A7CCB9C00FC7A2E /* Supporting Files */,
 			);
 			path = Betokened;
@@ -289,7 +314,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F36933E91A7D9E1C000316D7 /* Betokened.swift in Sources */,
+				F36933F91A7DA8D1000316D7 /* Tokenizer.swift in Sources */,
+				F36934051A7DAA3E000316D7 /* Recognizers.swift in Sources */,
+				F36933FD1A7DA9D4000316D7 /* Functional.swift in Sources */,
+				F36933F11A7DA875000316D7 /* Result.swift in Sources */,
+				F36934011A7DAA0A000316D7 /* Parsers.swift in Sources */,
+				F36933F51A7DA8B3000316D7 /* StringStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +327,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3B1DD5A1A7CCBD800FC7A2E /* Betokened.swift in Sources */,
+				F36933F71A7DA8D1000316D7 /* Tokenizer.swift in Sources */,
+				F36934031A7DAA3E000316D7 /* Recognizers.swift in Sources */,
+				F36933FB1A7DA9D4000316D7 /* Functional.swift in Sources */,
+				F36933EF1A7DA875000316D7 /* Result.swift in Sources */,
+				F36933FF1A7DAA0A000316D7 /* Parsers.swift in Sources */,
+				F36933F31A7DA8B3000316D7 /* StringStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,8 +340,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F36933FC1A7DA9D4000316D7 /* Functional.swift in Sources */,
+				F36933F41A7DA8B3000316D7 /* StringStream.swift in Sources */,
+				F36934001A7DAA0A000316D7 /* Parsers.swift in Sources */,
+				F36933F81A7DA8D1000316D7 /* Tokenizer.swift in Sources */,
+				F36933F01A7DA875000316D7 /* Result.swift in Sources */,
 				F3B1DD501A7CCB9C00FC7A2E /* BetokenedTests.swift in Sources */,
-				F3B1DD5B1A7D3B6300FC7A2E /* Betokened.swift in Sources */,
+				F36934041A7DAA3E000316D7 /* Recognizers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
