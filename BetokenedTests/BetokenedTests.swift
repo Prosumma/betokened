@@ -225,8 +225,57 @@ class BetokenedTests: XCTestCase {
     }
 
     func testFinalSymmetricDelimiterWithAsymmetricEscape() {
-        let test = "+'betoke^'ned'"
+        let test = "+'be^toke^'ned'"
         let quotes = quote("'", escape: "^") >> Token.toLiteral
+        let op = string("+") >> Token.toOp
+        let tokenizer = whitespace | quotes | op | end
+        switch tokenizer.tokenize(StringStream(test)) {
+        case .Ok(let tokens):
+            XCTAssertEqual(tokens.count, 2, TokenMatchFailed)
+            let betokened = "be^toke'ned"
+            switch tokens[1] {
+            case let .Literal(string, range):
+                XCTAssertEqual(string, betokened, TokenMatchFailed)
+                XCTAssertEqual("'be^toke^'ned'", test.substringWithRange(range), TokenMatchFailed)
+            default:
+                XCTFail(TokenMatchFailed)
+            }
+        case .Err(let error):
+            XCTFail("")
+        }
+    }
+
+    func testNonFinalSymmetricDelimiterWithSymmetricEscape() {
+        let test = "'betoke''ned'+"
+        let quotes = quote("'", escape: "'") >> Token.toLiteral
+        let op = string("+") >> Token.toOp
+        let tokenizer = whitespace | quotes | op | end
+        switch tokenizer.tokenize(StringStream(test)) {
+        case .Ok(let tokens):
+            XCTAssertEqual(tokens.count, 2, TokenMatchFailed)
+            let betokened = "betoke'ned"
+            switch tokens[0] {
+            case let .Literal(string, range):
+                XCTAssertEqual(string, betokened, TokenMatchFailed)
+                XCTAssertEqual("'betoke''ned'", test.substringWithRange(range), TokenMatchFailed)
+                switch tokens[1] {
+                case let .Op(c, range):
+                    XCTAssertEqual(c, Character("+"), TokenMatchFailed)
+                    XCTAssertEqual("+", test.substringWithRange(range), TokenMatchFailed)
+                default:
+                    XCTFail(TokenMatchFailed)
+                }
+            default:
+                XCTFail(TokenMatchFailed)
+            }
+        case .Err(let error):
+            XCTFail("")
+        }
+    }
+
+    func testFinalSymmetricDelimiterWithSymmetricEscape() {
+        let test = "+'betoke''ned'"
+        let quotes = quote("'", escape: "'") >> Token.toLiteral
         let op = string("+") >> Token.toOp
         let tokenizer = whitespace | quotes | op | end
         switch tokenizer.tokenize(StringStream(test)) {
@@ -236,7 +285,7 @@ class BetokenedTests: XCTestCase {
             switch tokens[1] {
             case let .Literal(string, range):
                 XCTAssertEqual(string, betokened, TokenMatchFailed)
-                XCTAssertEqual("'betoke^'ned'", test.substringWithRange(range), TokenMatchFailed)
+                XCTAssertEqual("'betoke''ned'", test.substringWithRange(range), TokenMatchFailed)
             default:
                 XCTFail(TokenMatchFailed)
             }
@@ -244,5 +293,4 @@ class BetokenedTests: XCTestCase {
             XCTFail("")
         }
     }
-    
 }
