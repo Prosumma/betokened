@@ -49,6 +49,33 @@ let TokenMatchFailed = "Token match failed."
 
 class BetokenedTests: XCTestCase {
     
+    func testString() {
+        let test = "  betokened+"
+        let s = string("betokened") >> Token.toLiteral
+        let op = string("+") >> Token.toOp
+        let tokenizer = whitespace | s | op | end
+        switch tokenizer.tokenize(StringStream(test)) {
+        case let .Ok(tokens):
+            XCTAssertEqual(tokens.count, 2, TokenMatchFailed)
+            switch tokens[0] {
+            case let .Literal(string, range):
+                XCTAssertEqual(string, "betokened", TokenMatchFailed)
+                XCTAssertEqual(test.substringWithRange(range), "betokened", TokenMatchFailed)
+                switch tokens[1] {
+                case let .Op(c, range):
+                    XCTAssertEqual(c, Character("+"), TokenMatchFailed)
+                    XCTAssertEqual("+", test.substringWithRange(range), TokenMatchFailed)
+                default:
+                    XCTFail(TokenMatchFailed)
+                }                
+            default:
+                XCTFail(TokenMatchFailed)
+            }
+        default:
+            XCTFail(TokenMatchFailed)
+        }
+    }
+    
     func testNonFinalAsymmetricDelimiterWithoutEscape() {
         let test = "{betokened}+"
         let braces = delimit("{", "}") >> Token.toLiteral
