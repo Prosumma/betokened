@@ -1,5 +1,7 @@
 # Betokened
 
+Note: Betokened is dead. I'm leaving it up here for archival purposes. Instead, use the much more capable [Parsimonious](https://github.com/Prosumma/Parsimonious). Parsimonious is a parser combinator library that also does a dang good job with tokenization thanks to its `StringStream` and `ParseMatch` types.
+
 **Betokened** is a simple little Swift library that turns a string into an array of tokens. It has the following goals:
 
 - It always tokenizes an underlying string.
